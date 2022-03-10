@@ -91,13 +91,11 @@ const filename = argv._[0];
 console.log("Image File : ",filename);
 
 const output = fs.createWriteStream(filename.replace('.png','.gcode'));
-
-output.write(`G21 G90 G54\n`);
-output.write(`S2000 M03\n`);
-
 Jimp.read(filename, (err, img) => {
   if (err) throw err;
-    img.grayscale();
+    img.grayscale();    
+    output.write(`G21 G90 G54\n`);
+    output.write(`S2000 M03\n`);
     const width = img.bitmap.width;
     const height = img.bitmap.height;
     const data = img.bitmap.data;
@@ -115,9 +113,10 @@ Jimp.read(filename, (err, img) => {
             }            
         }
     }
+    output.write(`M05\n`);
+    output.write(`G0 Z${top+15}\n`);
+
 });
-output.write(`M05\n`);
-output.write(`G0 Z${top+15}\n`);
 
 function plunge() {
     moveZ(-depth);
