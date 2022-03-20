@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js test.png -x=2 -y=-2 -dy='-0.1' -p=10 -t='54.5'"
+    "face": "node ./programs/face.js"
   },
   "keywords": [],
   "author": "",
