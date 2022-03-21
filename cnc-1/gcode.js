@@ -1,11 +1,13 @@
 const fs = require('fs');
+const PRECISION = 3;
 let output = undefined;
 let feed = 1000;
 let filename = "1001";
 let selected_tool = undefined;
 function init_gcode(_filename,description) {    
     if(_filename) filename = _filename;
-    output = fs.createWriteStream(filename+".nc");    
+    output = fs.createWriteStream(filename+".nc");
+    output.write('\n');
     text(description);    
     let gcode = "";
     gcode += `O ${filename}\n`;
@@ -18,24 +20,24 @@ function init_gcode(_filename,description) {
 
 function G0(coord) {
     let gcode = 'G0 ';
-    if(coord.X) gcode += `X${coord.X} `;
-    if(coord.Y) gcode += `Y${coord.Y} `;
-    if(coord.Z) gcode += `Z${coord.Z}`;
+    if(coord.X) gcode += `X${coord.X.toPrecision(PRECISION)} `;
+    if(coord.Y) gcode += `Y${coord.Y.toPrecision(PRECISION)} `;
+    if(coord.Z) gcode += `Z${coord.Z.toPrecision(PRECISION)}`;
     output.write(gcode + '\n');
 }
 
 function G1(coord,f) {
     let gcode = 'G1 ';
-    if(coord.X) gcode += `X${coord.X} `;
-    if(coord.Y) gcode += `Y${coord.Y} `;
-    if(coord.Z) gcode += `Z${coord.Z} `;
-    if(f) { gcode += `F${f}`; feed = f;} else gcode += `F${feed}`;
+    if(coord.X) gcode += `X${coord.X.toPrecision(PRECISION)} `;
+    if(coord.Y) gcode += `Y${coord.Y.toPrecision(PRECISION)} `;
+    if(coord.Z) gcode += `Z${coord.Z.toPrecision(PRECISION)} `;
+    if(f) { gcode += `F${f.toPrecision(PRECISION)}`; feed = f;} else gcode += `F${feed}`;
     output.write(gcode + '\n');
 }
 
 function tool(t,z) {
     let gcode = `T${t} M6\n`;
-    if(z) gcode += `G43 H${t} Z${z}\n`; else gcode += `G43 H${t}\n`;
+    if(z) gcode += `G43 H${t} Z${z.toPrecision(PRECISION)}\n`; else gcode += `G43 H${t}\n`;
     output.write(gcode);
 }
 

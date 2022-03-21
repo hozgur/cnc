@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "face": "node ./programs/face.js"
+    "face": "node ./programs/face.js",
+    "chamfer": "node ./programs/chamfer.js"
   },
   "keywords": [],
   "author": "",

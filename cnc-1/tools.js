@@ -11,7 +11,7 @@ tools = {
     },
     //
     CHAMFER : {
-        index : 7,
+        index : 6,
         diameter : 8,
         radius : 4,
         flutes : 2,
