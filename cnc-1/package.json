@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "face": "node ./programs/face.js"
+    "face": "node ./programs/face-2.js"
   },
   "keywords": [],
   "author": "",

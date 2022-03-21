@@ -2,6 +2,7 @@ const fs = require('fs');
 let output = undefined;
 let feed = 1000;
 let filename = "1001";
+let selected_tool = undefined;
 function init_gcode(_filename,description) {
     let gcode = "";
     if(_filename) filename = _filename;
@@ -80,6 +81,10 @@ function program_end() {
     output.write(gcode);
 }
 
+function text(str) {
+    let gcode = `( ${str} )\n`;
+    output.write(str);
+}
 
 function end() {
     spindle_stop();
