@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "face": "node ./programs/face-2.js"
+    "face": "node ./programs/face.js"
   },
   "keywords": [],
   "author": "",
