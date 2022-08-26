@@ -1,0 +1,9 @@
+(Rigid tapping)
+G91G28Z0
+M3S3000
+G84Z-100.F0.5,R1
+G80
+M99
+
+
+%

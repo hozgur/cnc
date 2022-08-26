@@ -1,0 +1,12 @@
+(Z-TEST)
+(Parameter setting)
+#3=600(Z Axis travel)
+#4=2000(Feed)
+G91 G28 Z0
+G90 G0 Z-#3
+Z0
+G90 G1 Z-#3 F#4
+Z0
+M99
+
+%

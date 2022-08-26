@@ -18,6 +18,10 @@ function init_gcode(_filename,description) {
     text(new Date());
 };
 
+function write(str) {
+    output.write(str + '\n');
+}
+
 function G0(coord) {
     let gcode = 'G0 ';
     if(coord.X) gcode += `X${coord.X.toPrecision(PRECISION)} `;
@@ -31,7 +35,7 @@ function G1(coord,f) {
     if(coord.X) gcode += `X${coord.X.toPrecision(PRECISION)} `;
     if(coord.Y) gcode += `Y${coord.Y.toPrecision(PRECISION)} `;
     if(coord.Z) gcode += `Z${coord.Z.toPrecision(PRECISION)} `;
-    if(f) { gcode += `F${f.toPrecision(PRECISION)}`; feed = f;} else gcode += `F${feed}`;
+    if(f) { gcode += `F${f}`; feed = f;} else gcode += `F${feed}`;
     output.write(gcode + '\n');
 }
 
@@ -96,6 +100,7 @@ function end() {
 
 module.exports = {
     init_gcode,
+    write,
     G0,
     G1,
     tool,

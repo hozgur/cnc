@@ -32,7 +32,7 @@ tools = {
     },
     
     surfaceSpeed : function(tool,spindle_speed) {
-        return 2 * tool.diameter * Math.PI * spindle_speed / 1000;
+        return tool.diameter * Math.PI * spindle_speed / 1000;
     }
 }
 

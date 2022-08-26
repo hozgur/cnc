@@ -32,30 +32,29 @@ gcode.text(`Z_CLEARANCE: ${Z_CLEARANCE}`);
 
 // Tool seçme
 gcode.tool(TOOL.index,Z_CLEARANCE);
-
+gcode.write('G41 P' + CHAMFER_WIDTH * 2 + CHAMFER_OFFSET);
 // Spindle açma
 gcode.spindle_CW(SPINDLE_SPEED);
 // Soğutma açma
 gcode.coolant_on();
 
 let start_x = stock_x - tool_diameter - 5;
-let start_y = stock_y + CHAMFER_WIDTH + CHAMFER_OFFSET;
+let start_y = stock_y;
 const start_z = Z_FACE  - CHAMFER_WIDTH - CHAMFER_OFFSET;
-let end_x = stock_x + WIDTH_X + CHAMFER_WIDTH + CHAMFER_OFFSET;
+let end_x = stock_x + WIDTH_X ;
 
 gcode.G0({X: start_x, Y: start_y});
 gcode.G0({Z: start_z});
 gcode.G1({X: end_x, F: FEED});
 
-let end_y = stock_y - WIDTH_Y - CHAMFER_WIDTH - CHAMFER_OFFSET;
+let end_y = stock_y - WIDTH_Y;
 gcode.G1({Y: end_y, F: FEED});
 
-end_x = stock_x - CHAMFER_WIDTH - CHAMFER_OFFSET;
+end_x = stock_x;
 gcode.G1({X: end_x, F: FEED});
 
-end_y = stock_y - CHAMFER_WIDTH - CHAMFER_OFFSET;
+end_y = stock_y;
 gcode.G1({Y: end_y, F: FEED});
-
 
 gcode.coolant_off();
 gcode.relative_mode();
